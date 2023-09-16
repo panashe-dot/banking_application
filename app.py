@@ -116,5 +116,6 @@ def main():
     elif choice == "Top Customers":
         st.subheader("Top Customers")
         retrieve_top_customers()
-
+  main()
+      
 
