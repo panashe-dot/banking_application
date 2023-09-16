@@ -1,5 +1,4 @@
 import streamlit as st
-import sqlite3
 
 # Connect to the database
 conn = sqlite3.connect('banking.db')
