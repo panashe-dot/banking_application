@@ -1,1 +1,2 @@
 streamlit
+pip==23.2.1
