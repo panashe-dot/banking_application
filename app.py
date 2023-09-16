@@ -4,7 +4,7 @@ import sys
 
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # Connect to the database
-conn = sqlite3.connect('banking.db')
+conn = pysqlite3.connect('banking.db')
 c = conn.cursor()
 
 # Create accounts table if it doesn't exist
