@@ -75,7 +75,6 @@ def retrieve_top_customers():
     else:
         for customer in top_customers:
             st.write(f"Customer Name: {customer[0]}, Balance: {customer[1]}")
-
 # Streamlit app
 def main():
     st.title("Banking Application")
@@ -117,5 +116,7 @@ def main():
         st.subheader("Top Customers")
         retrieve_top_customers()
   main()
+
+
       
 
