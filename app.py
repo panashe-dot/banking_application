@@ -15,11 +15,14 @@ c.execute('''CREATE TABLE IF NOT EXISTS accounts
 c.execute('''CREATE TABLE IF NOT EXISTS transactions
              (id INTEGER PRIMARY KEY AUTOINCREMENT, account_id INTEGER, transaction_type TEXT, amount REAL)''')
 
+
 # Function to create a new account
 def create_account(account_type, customer_name):
-    c.execute("INSERT INTO accounts (account_type, customer_name, balance) VALUES (?, ?, 0.0)", (account_type, customer_name))
+    c.execute("INSERT INTO accounts (account_type, customer_name, balance) VALUES (?, ?, 0.0)",
+              (account_type, customer_name))
     conn.commit()
     st.success("Account created successfully.")
+
 
 # Function to display all created accounts
 def list_accounts():
@@ -30,13 +33,17 @@ def list_accounts():
         st.info("No accounts found.")
     else:
         for account in accounts:
-            st.write(f"Account ID: {account[0]}, Account Type: {account[1]}, Customer Name: {account[2]}, Balance: {account[3]}")
+            st.write(
+                f"Account ID: {account[0]}, Account Type: {account[1]}, Customer Name: {account[2]}, Balance: {account[3]}")
+
 
 # Function to create a transaction
 def create_transaction(account_id, transaction_type, amount):
-    c.execute("INSERT INTO transactions (account_id, transaction_type, amount) VALUES (?, ?, ?)", (account_id, transaction_type, amount))
+    c.execute("INSERT INTO transactions (account_id, transaction_type, amount) VALUES (?, ?, ?)",
+              (account_id, transaction_type, amount))
     conn.commit()
     st.success("Transaction created successfully.")
+
 
 # Function to display all transactions
 def list_transactions():
@@ -49,7 +56,9 @@ def list_transactions():
         st.info("No transactions found.")
     else:
         for transaction in transactions:
-            st.write(f"Transaction ID: {transaction[0]}, Account Type: {transaction[1]}, Customer Name: {transaction[2]}, Transaction Type: {transaction[3]}, Amount: {transaction[4]}")
+            st.write(
+                f"Transaction ID: {transaction[0]}, Account Type: {transaction[1]}, Customer Name: {transaction[2]}, Transaction Type: {transaction[3]}, Amount: {transaction[4]}")
+
 
 # Function to search transactions by account ID or customer name
 def search_transactions(search_key):
@@ -63,7 +72,9 @@ def search_transactions(search_key):
         st.info("No transactions found.")
     else:
         for transaction in transactions:
-            st.write(f"Transaction ID: {transaction[0]}, Account Type: {transaction[1]}, Customer Name: {transaction[2]}, Transaction Type: {transaction[3]}, Amount: {transaction[4]}")
+            st.write(
+                f"Transaction ID: {transaction[0]}, Account Type: {transaction[1]}, Customer Name: {transaction[2]}, Transaction Type: {transaction[3]}, Amount: {transaction[4]}")
+
 
 # Function to retrieve top 5 customers with the highest account balances
 def retrieve_top_customers():
@@ -75,12 +86,15 @@ def retrieve_top_customers():
     else:
         for customer in top_customers:
             st.write(f"Customer Name: {customer[0]}, Balance: {customer[1]}")
+
+
 # Streamlit app
 def main():
     st.title("Banking Application")
 
     # Sidebar
-    menu = ["Create Account", "List Accounts", "Create Transaction", "List Transactions", "Search Transactions", "Top Customers"]
+    menu = ["Create Account", "List Accounts", "Create Transaction", "List Transactions", "Search Transactions",
+            "Top Customers"]
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == "Create Account":
@@ -115,8 +129,6 @@ def main():
     elif choice == "Top Customers":
         st.subheader("Top Customers")
         retrieve_top_customers()
-  main()
 
 
-      
-
+main()
